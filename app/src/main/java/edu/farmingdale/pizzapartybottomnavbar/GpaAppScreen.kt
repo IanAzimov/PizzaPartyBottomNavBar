@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,9 +17,10 @@ import androidx.compose.ui.unit.dp
 // ToDo 4: Match the UI as in drawable gpa_design.png. Use the following hints:
 // - The background color should be Color.Cyan
 // - Fix padding, alignment, and keypad type
+//done
 
 // ToDo 5:  Add the GpaAppScreen composable button that clears the input fields when clicked
-
+//done
 
 @Composable
 fun GpaAppScreen() {
@@ -30,33 +32,41 @@ fun GpaAppScreen() {
 
     // Declare variables for GPA result and background color
     var gpa by remember { mutableStateOf("") }
-    var backColor by remember { mutableStateOf(Color.White) }
-    var btnLabel by remember { mutableStateOf("Calulate GPA") }
+    var backColor by remember { mutableStateOf(Color.Cyan) }
+    var btnLabel by remember { mutableStateOf("Compute GPA") }
+    var btnLabel2 = "Clear Grades"
 
     Column(
-        modifier = Modifier
+        modifier = Modifier .fillMaxSize() .background(backColor)
         ,verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        TextField(
+        OutlinedTextField(
             value = grade1,
             onValueChange = { grade1 = it },Modifier.padding(16.dp),
-            label = { Text("Course 1 Grade")}
+            label = { Text("Course 1 Grade")},
+            colors = TextFieldDefaults.colors(unfocusedContainerColor = backColor, focusedContainerColor = backColor),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+
         )
 
 
-        TextField(
+        OutlinedTextField(
             value = grade2,
-            onValueChange = { grade2 = it },
+            onValueChange = { grade2 = it },Modifier.padding(16.dp),
             label = { Text("Course 2 Grade") },
+            colors = TextFieldDefaults.colors(unfocusedContainerColor = backColor, focusedContainerColor = backColor),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
 
 
-        TextField(
+        OutlinedTextField(
             value = grade3,
-            onValueChange = { grade3 = it },
+            onValueChange = { grade3 = it },Modifier.padding(16.dp),
             label = { Text("Course 3 Grade") },
+            colors = TextFieldDefaults.colors(unfocusedContainerColor = backColor, focusedContainerColor = backColor),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
 
@@ -90,12 +100,13 @@ fun GpaAppScreen() {
             Text(btnLabel)
         }
 
-
-        if (gpa.isNotEmpty()) {
-            Text(text = "GPA: $gpa")
+        Button(onClick = {
+            grade1 = ""
+            grade2 = ""
+            grade3 = ""
+        }, modifier = Modifier.padding(top = 56.dp)) {
+            Text(btnLabel2)
         }
-
-
     }
 }
 

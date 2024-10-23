@@ -5,7 +5,7 @@ import kotlin.math.ceil
 const val SLICES_PER_PIZZA = 8
 
 enum class HungerLevel(var numSlices: Int) {
-    LIGHT(2), MEDIUM(3), RAVENOUS(4)
+    LIGHT(1), MEDIUM(2),SORTOFHUNGRY(3), RAVENOUS(4)
 }
 
 class PizzaCalculator(partySize: Int, var hungerLevel: HungerLevel) {

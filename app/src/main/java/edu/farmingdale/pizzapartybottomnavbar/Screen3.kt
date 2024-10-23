@@ -27,25 +27,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 // ToDo 2: the slider should be able to change the text value of the screen
-//
+//done
 
 // ToDo 3: Make the UI look better by adding a gradient background (vertical) and padding
 // grey white grey
+//done
 
 @Composable
 fun Screen3() {
     var sliderValue by remember { mutableStateOf(0.5f) }
     var chkd by remember { mutableStateOf(true) }
 
+    var brushColor = arrayOf( 0.0f to Color.White, 0.2f to Color.LightGray, 1f to Color.White)
 
     val context = LocalContext.current
-    Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize(),
+    Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize()
+        .background(Brush.verticalGradient(colorStops = brushColor)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
         Slider(value = sliderValue, onValueChange = { sliderValue=it }, Modifier.fillMaxWidth()
             , enabled = chkd)
 
-        Text (fontSize = 20.sp, text = "Second Screen" )
+        Text (fontSize = 20.sp, text = "Second Screen " +sliderValue)
 
         Button(onClick = { val newInt = Intent(Intent.ACTION_VIEW)
             newInt.setData(Uri.parse("tel:6314202000"))

@@ -18,6 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
+//TODO 6: ADD THING BETWEEN MEDIUM AND VERY HUNGRY
+//done
+
+//TODO 7: CHANGE TO VIEW MODEL
+//DONE
+
+
 @Composable
 fun PizzaPartyScreen(
     modifier: Modifier = Modifier,
@@ -77,7 +84,7 @@ fun HungerLevelSelection(
     onSelected: (HungerLevel) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val hungerItems = listOf("Light", "Medium", "Very hungry")
+    val hungerItems = listOf("Light", "Medium", "Hungrier than Normal","Very hungry")
 
     RadioGroup(
         labelText = "How hungry?",
@@ -85,12 +92,14 @@ fun HungerLevelSelection(
         selectedOption = when (hungerLevel) {
             HungerLevel.LIGHT -> hungerItems[0]
             HungerLevel.MEDIUM -> hungerItems[1]
-            else -> hungerItems[2]
+            HungerLevel.SORTOFHUNGRY -> hungerItems[2]
+            else -> hungerItems[3]
         },
         onSelected = {
             onSelected(when (it) {
                 hungerItems[0] -> HungerLevel.LIGHT
                 hungerItems[1] -> HungerLevel.MEDIUM
+                hungerItems[2] -> HungerLevel.SORTOFHUNGRY
                 else -> HungerLevel.RAVENOUS
             })
         },
